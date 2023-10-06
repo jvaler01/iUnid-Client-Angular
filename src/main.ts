@@ -1,14 +1,12 @@
-import { importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes';
+import { appConfig } from './app/app.config';
+import { environment } from './environments/environment';
+import { enableProdMode } from '@angular/core';
 
+if (environment.production) {
+  enableProdMode();
+}
 
-bootstrapApplication(AppComponent, {
-    providers: [
-      provideRouter(routes),
-      importProvidersFrom(BrowserModule)
-    ]
-})
+bootstrapApplication(AppComponent, appConfig)
   .catch(err => console.error(err));
